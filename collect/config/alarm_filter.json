@@ -1,0 +1,74 @@
+{
+  "enabled": true,
+  "rules": [
+    {
+      "name": "过滤DDL执行失败包含tmp关键字",
+      "enabled": true,
+      "filters": [
+        {
+          "field": "content",
+          "operator": "contains",
+          "value": "tmp"
+        },
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": "20513"
+        }
+      ],
+      "logic": "AND"
+    },
+    {
+      "name": "屏蔽License过期警告,超过限额",
+      "enabled": true,
+      "filters": [
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": 35003
+        },
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": 35004
+        },
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": 350001
+        }
+      ,
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": 350002
+        }
+      ],
+      "logic": "OR"
+    },
+    {
+      "name": "过滤JDBC版本异常",
+      "enabled": true,
+      "filters": [
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": "37000"
+        }
+      ],
+      "logic": "AND"
+    },
+    {
+      "name": "过滤CN线程积压",
+      "enabled": true,
+      "filters": [
+        {
+          "field": "code",
+          "operator": "equals",
+          "value": "20515"
+        }
+      ],
+      "logic": "AND"
+    }
+  ]
+}

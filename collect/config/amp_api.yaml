@@ -1,0 +1,16 @@
+alarm:
+  # 告警接收API地址
+  api_address: "告警推送地址IP地址"
+  # 告警推送间隔时间（秒）
+  time: 10
+
+# 日志配置
+log:
+  # 日志文件路径
+  path: "log/app.log"
+  # 日志等级: DEBUG, INFO, WARN, ERROR
+  level: "INFO"
+  # 日志清理：保留天数
+  keep_days: 7
+  # 日志清理检查间隔（秒）
+  clean_interval: 86400
