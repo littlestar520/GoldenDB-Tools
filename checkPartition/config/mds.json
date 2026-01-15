@@ -1,0 +1,16 @@
+[
+  {
+    "name" : "集群名称",
+    "username": "super",
+    "password": "密码（加密后的）",
+    "host": "IP地址",
+    "port": 3309
+  },
+  {
+    "name" : "集群名称2",
+    "username": "super",
+    "password": "密码（加密后的）",
+    "host": "IP地址",
+    "port": 3309
+  }
+]
