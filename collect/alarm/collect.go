@@ -127,6 +127,21 @@ func init() {
 	}
 }
 
+// LogFilterStatus 记录过滤配置状态
+func LogFilterStatus() {
+	if logger == nil {
+		return
+	}
+	if filterConfig == nil {
+		logger.Warn("告警过滤配置未加载 (filterConfig is nil)")
+		return
+	}
+	logger.Info("告警过滤配置状态: Enabled=%v, 规则数量=%d", filterConfig.Enabled, len(filterConfig.Rules))
+	for i, rule := range filterConfig.Rules {
+		logger.Info("规则 #%d: %s (Enabled=%v)", i+1, rule.Name, rule.Enabled)
+	}
+}
+
 // 采集告警
 func GetAlarm(mds *sql.DB) []Alarm {
 	var AlarmList []Alarm
@@ -161,7 +176,13 @@ func GetAlarm(mds *sql.DB) []Alarm {
 	// 应用过滤
 	if filterConfig != nil && filterConfig.Enabled {
 		originalCount := len(AlarmList)
+		for _, alarm := range AlarmList {
+			fmt.Printf("原始告警: %+v\n", alarm)
+		}
 		AlarmList = FilterAlarms(AlarmList, filterConfig)
+		for _, alarm := range AlarmList {
+			fmt.Printf("过滤后的告警: %+v\n", alarm)
+		}
 		filteredCount := originalCount - len(AlarmList)
 		if filteredCount > 0 {
 			if logger != nil {
@@ -172,14 +193,6 @@ func GetAlarm(mds *sql.DB) []Alarm {
 
 	return AlarmList
 }
-
-// 自定义过滤函数，可直接调用
-// 示例用法：
-// rules := []alarm.Rule{
-//     {Field: "content", Operator: "contains", Value: "测试"},
-//     {Field: "code", Operator: "equals", Value: 1001},
-// }
-// filtered := alarm.FilterAlarmsCustom(alarms, rules, "OR")
 
 // 封装告警信息
 func GenAlarmInfo(alarm Alarm, insight string, eventtype string) AlarmInfo {

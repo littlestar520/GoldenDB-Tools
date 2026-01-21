@@ -2,21 +2,16 @@
   "enabled": true,
   "rules": [
     {
-      "name": "过滤DDL执行失败包含tmp关键字",
+      "name": "过滤DDL执行失败",
       "enabled": true,
       "filters": [
         {
-          "field": "content",
-          "operator": "contains",
-          "value": "tmp"
-        },
-        {
           "field": "code",
           "operator": "equals",
-          "value": "20513"
+          "value": 20513
         }
       ],
-      "logic": "AND"
+      "logic": "OR"
     },
     {
       "name": "屏蔽License过期警告,超过限额",
@@ -53,7 +48,7 @@
         {
           "field": "code",
           "operator": "equals",
-          "value": "37000"
+          "value": 37000
         }
       ],
       "logic": "AND"
@@ -65,7 +60,7 @@
         {
           "field": "code",
           "operator": "equals",
-          "value": "20515"
+          "value": 20515
         }
       ],
       "logic": "AND"

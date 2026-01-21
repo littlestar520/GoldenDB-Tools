@@ -90,6 +90,8 @@ func Start() {
 	initLogger()
 	if logger != nil {
 		logger.Info("开始启动监控服务")
+		alarm.SetLogger(logger) // 设置alarm包的日志实例
+		alarm.LogFilterStatus() // 记录告警过滤配置状态
 	}
 
 	// 设置alarm包的logger
@@ -142,7 +144,7 @@ func Start() {
 			for {
 				select {
 				case <-ticker.C:
-					// 查询当前所有告警并封装成切片
+					// 查询当前所有告警并封装成切片x s
 					Alarms := alarm.GetAlarm(dbConnect)
 					currentAlarms := alarm.GenAlarmList(Alarms, insight, "trigger")
 

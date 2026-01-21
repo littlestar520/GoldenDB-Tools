@@ -67,6 +67,9 @@ func shouldFilter(alarm Alarm, config *FilterConfig) bool {
 		}
 
 		if matchesRule(alarm, rule) {
+			if logger != nil {
+				logger.Info("告警(ID=%d, Code=%d) 匹配过滤规则: %s", alarm.Alarmid, alarm.Code, rule.Name)
+			}
 			return true
 		}
 	}

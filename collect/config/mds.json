@@ -2,7 +2,7 @@
   {
     "name" : "集群名称",
     "username": "super",
-    "password": "密码（加密后的）",
+    "password": "加密后的密码",
     "host": "IP地址",
     "port": 3309
   }

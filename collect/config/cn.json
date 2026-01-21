@@ -1,10 +1,10 @@
 [
   {
-    "name" : "CN名称",
-    "username": "连接用户名称",
-    "password": "密码",
-    "host": "IP地址",
+    "name" : "名称",
+    "username": "连接CN的用户",
+    "password": "加密后的密码串",
+    "host": "ip地址",
     "port": 端口号,
-    "schema": "数据库名称"
+    "schema": "连接的数据库名"
   }
 ]

@@ -6,7 +6,7 @@
 
 PLATFORM=${1:-linux-amd64}
 BINARY_NAME="GdbAlarm-${PLATFORM}"
-PACKAGE_NAME="dutymons-${PLATFORM}.tar.gz"
+PACKAGE_NAME="GdbAlarm-${PLATFORM}.tar.gz"
 
 echo "打包平台: $PLATFORM"
 echo "二进制文件: $BINARY_NAME"
@@ -30,7 +30,10 @@ mkdir -p "$TEMP_DIR"
 
 # 复制必要文件
 cp "$BINARY_NAME" "$TEMP_DIR/"
-cp -r "config" "$TEMP_DIR/"
+mkdir -p "$TEMP_DIR/config"
+cp -r "config/alarm_filter.json" "$TEMP_DIR/config/"
+cp -r "config/amp_api.yaml" "$TEMP_DIR/config/"
+cp -r "config/mds.json" "$TEMP_DIR/config/"
 cp "manager.sh" "$TEMP_DIR/" 2>/dev/null || echo "警告: manager.sh 不存在，跳过。"
 
 # 创建 log 目录（空目录）

@@ -1,6 +1,6 @@
 alarm:
   # 告警接收API地址
-  api_address: "告警推送地址IP地址"
+  api_address: "推送地址"
   # 告警推送间隔时间（秒）
   time: 10
 
